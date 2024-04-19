@@ -38,10 +38,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          repository: qiiwiiq/electron-demo
-          ref: 'master'
-          token:  ${{ secrets.OUTPUT_REPO_TOKEN }}
+        # with:
+        #   repository: qiiwiiq/electron-demo
+        #   ref: 'master'
+        #   token:  ${{ secrets.OUTPUT_REPO_TOKEN }}
       - name: Update image
         run: |
           FILE="setting/values-${{ github.event.inputs.Phase }}.yaml"
