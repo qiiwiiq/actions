@@ -1,0 +1,4 @@
+Alpha-setting:
+  project: test
+  pod:
+    image: "alpha-10000"
