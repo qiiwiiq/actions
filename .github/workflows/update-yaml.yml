@@ -32,9 +32,10 @@ jobs:
         with:
           repository: qiiwiiq/actions
           sparse-checkout: setting
-          sparse-checkout-cone-mode: false
+          # sparse-checkout-cone-mode: false
       - name: Update image
         run: |
+          ls
           FILE="values-${{ github.event.inputs.Phase }}.yaml"
           IMAGE="${{ github.event.inputs.Phase }}-${{ github.event.inputs.BuildNumber }}"
           IMAGE_PATTERN="s|^\([[:space:]]*image: \).*|\\1\"${IMAGE}\"|"
