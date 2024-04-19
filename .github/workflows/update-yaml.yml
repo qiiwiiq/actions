@@ -1,0 +1,45 @@
+name: UpdateYaml
+run-name: Update build number [${{ github.event.inputs.Phase }}] ${{ github.event.inputs.BuildNumber }}
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      BuildNumber:
+        description: 'Build number'
+        default: '10001'
+        required: true
+        type: string
+      Phase:
+        description: 'Phase (dev/alpha/beta)'
+        default: 'beta'
+        required: true
+        type: choice
+        options:
+        - dev
+        - alpha
+        - beta
+
+permissions:
+  contents: write
+jobs:
+  Update-image-version:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 
+      - name: Update image
+        run: |
+          FILE="values-${{ github.event.inputs.Phase }}.yaml"
+          IMAGE="${{ github.event.inputs.Phase }}-${{ github.event.inputs.BuildNumber }}"
+          IMAGE_PATTERN="s|^\([[:space:]]*image: \).*|\\1\"${IMAGE}\"|"
+          sed "${IMAGE_PATTERN}" "${FILE}" > temp.yaml && mv temp.yaml "${FILE}"
+      - name: Commit file
+        run: |
+          git pull
+          git config --global user.email "${{ github.actor }}@github.com"
+          git config --global user.name "${{ github.actor }}"
+          git add .
+          git commit -m "Update image version: ${{ github.event.inputs.BuildNumber }}"
+          git push
