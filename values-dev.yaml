@@ -1,0 +1,4 @@
+Dev-setting:
+  project: test
+  pod:
+    image: "dev-10000"
