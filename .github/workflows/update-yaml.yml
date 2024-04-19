@@ -31,7 +31,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: qiiwiiq/actions
-          sparse-checkout: 'setting'
+          sparse-checkout: setting
+          sparse-checkout-cone-mode: false
       - name: Update image
         run: |
           FILE="values-${{ github.event.inputs.Phase }}.yaml"
