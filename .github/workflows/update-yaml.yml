@@ -28,7 +28,9 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: 'setting'
       - name: Update image
         run: |
           FILE="values-${{ github.event.inputs.Phase }}.yaml"
