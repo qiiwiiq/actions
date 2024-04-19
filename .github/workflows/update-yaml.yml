@@ -20,6 +20,15 @@ on:
         - alpha
         - beta
 
+  workflow_call:
+    inputs:
+      BuildNumber:
+        required: true
+        type: string
+      Phase:
+        required: true
+        type: string
+
 permissions:
   contents: write
 jobs:
