@@ -30,6 +30,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          repository: qiiwiiq/actions
           sparse-checkout: 'setting'
       - name: Update image
         run: |
