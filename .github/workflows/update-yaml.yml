@@ -31,11 +31,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: qiiwiiq/actions
-          ref: test
       - name: Update image
         run: |
-          ls
-          FILE="values-${{ github.event.inputs.Phase }}.yaml"
+          FILE="setting/values-${{ github.event.inputs.Phase }}.yaml"
           IMAGE="${{ github.event.inputs.Phase }}-${{ github.event.inputs.BuildNumber }}"
           IMAGE_PATTERN="s|^\([[:space:]]*image: \).*|\\1\"${IMAGE}\"|"
           sed "${IMAGE_PATTERN}" "${FILE}" > temp.yaml && mv temp.yaml "${FILE}"
