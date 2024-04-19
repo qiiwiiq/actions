@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
+      UpdateYaml:
+        description: Do u want to update yaml?
+        default: false
+        type: boolean
       BuildNumber:
         description: 'Build number'
         default: '10001'
@@ -38,6 +42,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
   CallOtherWorkflow:
+    if: ${{ inputs.UpdateYaml }}
     needs: Greeting
     uses: qiiwiiq/actions/.github/workflows/update-yaml.yml@main
     with:
