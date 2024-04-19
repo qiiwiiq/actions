@@ -41,7 +41,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Call other workflow
-        uses: ./.github/workflows/update-yaml.yml
+        uses: qiiwiiq/.github/workflows/update-yaml.yml@main
         with:
           BuildNumber: ${{ inputs.BuildNumber }}
           Phase: ${{ inputs.Phase }}
