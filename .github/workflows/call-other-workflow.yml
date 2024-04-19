@@ -18,6 +18,9 @@ on:
         - dev
         - alpha
         - beta
+        
+permissions:
+  contents: write
 
 jobs:
   Greeting:
