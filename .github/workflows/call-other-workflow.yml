@@ -8,20 +8,20 @@ on:
         description: Do u want to update yaml?
         default: false
         type: boolean
-      BuildNumber:
-        description: 'Build number'
-        default: '10001'
-        required: true
-        type: string
-      Phase:
-        description: 'Phase (dev/alpha/beta)'
-        default: 'beta'
-        required: true
-        type: choice
-        options:
-        - dev
-        - alpha
-        - beta
+      # BuildNumber:
+      #   description: 'Build number'
+      #   default: '10001'
+      #   required: true
+      #   type: string
+      # Phase:
+      #   description: 'Phase (dev/alpha/beta)'
+      #   default: 'beta'
+      #   required: true
+      #   type: choice
+      #   options:
+      #   - dev
+      #   - alpha
+      #   - beta
         
 permissions:
   contents: write
