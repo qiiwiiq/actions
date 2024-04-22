@@ -46,6 +46,7 @@ jobs:
     needs: Greeting
     uses: qiiwiiq/actions/.github/workflows/update-yaml.yml@main
     with:
-      BuildNumber: ${{ inputs.BuildNumber }}
-      Phase: ${{ inputs.Phase }}
-          
+      # BuildNumber: ${{ inputs.BuildNumber }}
+      # Phase: ${{ inputs.Phase }}
+      BuildNumber: 'latest'
+      Phase: 'dev'
