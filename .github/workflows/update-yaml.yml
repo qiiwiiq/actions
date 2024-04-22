@@ -38,9 +38,8 @@ jobs:
     steps:
       - name: Print inputs
         run: |
-          echo "Build Number: ${{ github.event.inputs.BuildNumber }}"
-          echo "Phase: ${{ github.event.inputs.Phase }}"
-          echo "${{ github.event.inputs }}"
+          echo "Build Number: ${{ inputs.BuildNumber }}"
+          echo "Phase: ${{ inputs.Phase }}"
       - name: Checkout code
         uses: actions/checkout@v4
         # with:
@@ -49,8 +48,8 @@ jobs:
         #   token:  ${{ secrets.OUTPUT_REPO_TOKEN }}
       - name: Update image
         run: |
-          FILE="setting/values-${{ github.event.inputs.Phase }}.yaml"
-          IMAGE="${{ github.event.inputs.Phase }}-${{ github.event.inputs.BuildNumber }}"
+          FILE="setting/values-${{ inputs.Phase }}.yaml"
+          IMAGE="${{ inputs.Phase }}-${{ inputs.BuildNumber }}"
           IMAGE_PATTERN="s|^\([[:space:]]*image: \).*|\\1\"${IMAGE}\"|"
           sed "${IMAGE_PATTERN}" "${FILE}" > temp.yaml && mv temp.yaml "${FILE}"
       - name: Commit file
@@ -59,5 +58,5 @@ jobs:
           git config --global user.email "${{ github.actor }}@github.com"
           git config --global user.name "${{ github.actor }}"
           git add .
-          git commit -m "Update image version: ${{ github.event.inputs.BuildNumber }}"
+          git commit -m "Update image version: ${{ inputs.BuildNumber }}"
           git push
