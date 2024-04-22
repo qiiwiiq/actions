@@ -8,20 +8,20 @@ on:
         description: Do u want to update yaml?
         default: false
         type: boolean
-      # BuildNumber:
-      #   description: 'Build number'
-      #   default: '10001'
-      #   required: true
-      #   type: string
-      # Phase:
-      #   description: 'Phase (dev/alpha/beta)'
-      #   default: 'beta'
-      #   required: true
-      #   type: choice
-      #   options:
-      #   - dev
-      #   - alpha
-      #   - beta
+      BuildNumber:
+        description: 'Build number'
+        default: '10001'
+        required: true
+        type: string
+      Phase:
+        description: 'Phase (dev/alpha/beta)'
+        default: 'beta'
+        required: true
+        type: choice
+        options:
+        - dev
+        - alpha
+        - beta
         
 permissions:
   contents: write
@@ -53,15 +53,13 @@ jobs:
     needs: Greeting
     steps:
       - env:
-          OUTPUT1: ${{needs.job1.outputs.output1}}
-          OUTPUT2: ${{needs.job1.outputs.output2}}
+          OUTPUT1: ${{needs.Greeting.outputs.output1}}
+          OUTPUT2: ${{needs.Greeting.outputs.output2}}
         run: echo "$OUTPUT1 $OUTPUT2"
   CallOtherWorkflow:
     if: ${{ inputs.UpdateYaml }}
     needs: Greeting
     uses: qiiwiiq/actions/.github/workflows/update-yaml.yml@main
     with:
-      # BuildNumber: ${{ inputs.BuildNumber }}
-      # Phase: ${{ inputs.Phase }}
-      BuildNumber: 'latest'
-      Phase: 'dev'
+      BuildNumber: ${{ inputs.BuildNumber }}
+      Phase: ${{ inputs.Phase }}
