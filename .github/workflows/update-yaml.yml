@@ -40,6 +40,7 @@ jobs:
         run: |
           echo "Build Number: ${{ github.event.inputs.BuildNumber }}"
           echo "Phase: ${{ github.event.inputs.Phase }}"
+          echo "${{ github.event.inputs }}"
       - name: Checkout code
         uses: actions/checkout@v4
         # with:
